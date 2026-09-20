@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Year 7 Unit 1 — Working scientifically and the particle model</title>
+<style>
+:root{
+  --paper:#F6F4FA;
+  --card:#FFFFFF;
+  --ink:#1E1B2E;
+  --quiet:#5C5670;
+  --rule:#D6D0E4;
+  --purple:#6B3FA0;
+  --purple-soft:#EDE6F7;
+  --green:#1F6F45;
+  --green-soft:#E1F1E8;
+  --pink:#C2255C;
+  --pink-soft:#FBE4EE;
+  --amber:#A86400;
+  --amber-soft:#FBEED6;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --serif:Georgia,"Iowan Old Style","Times New Roman",serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+:root:not([data-theme="light"]){}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#16141F; --card:#201D2C; --ink:#EDEAF5; --quiet:#ABA3C0; --rule:#3A3450;
+    --purple:#B48BE8; --purple-soft:#2C2440; --green:#6FCB97; --green-soft:#1B3328;
+    --pink:#F090B6; --pink-soft:#3A1F2C; --amber:#E0B060; --amber-soft:#332715;
+  }
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 56px);height:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:16px;line-height:1.55;
+  -webkit-text-size-adjust:100%;
+}
+h1,h2,h3,h4{line-height:1.2;margin:0}
+p{margin:0 0 .7em}
+a{color:var(--purple)}
+button{font:inherit;color:inherit}
+
+/* ---------- masthead ---------- */
+.masthead{
+  border-bottom:2px solid var(--ink);background:var(--card);
+  padding:18px 20px 14px;
+}
+.masthead .wrap{max-width:1000px;margin:0 auto}
+.school{font-size:.72rem;letter-spacing:.06em;color:var(--quiet);margin-bottom:6px}
+.masthead h1{font-family:var(--serif);font-size:clamp(1.5rem,4.5vw,2.1rem);font-weight:700}
+.masthead .sub{font-family:var(--serif);font-size:1rem;color:var(--quiet);margin-top:4px}
+.keyline{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;font-size:.8rem}
+.keyline span{display:inline-flex;align-items:center;gap:6px;color:var(--quiet)}
+.dot{width:11px;height:11px;border-radius:50%;flex:none}
+.dot.g{background:var(--green)} .dot.p{background:var(--pink)} .dot.v{background:var(--purple)}
+
+/* ---------- tabs ---------- */
+nav.tabs{
+  position:sticky;top:0;z-index:30;background:var(--card);
+  border-bottom:1px solid var(--rule);
+  padding-top:env(safe-area-inset-top,0px);
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+}
+nav.tabs .wrap{max-width:1000px;margin:0 auto;display:flex;gap:2px;padding:0 12px;min-width:max-content}
+nav.tabs button{
+  background:none;border:0;border-bottom:3px solid transparent;
+  padding:13px 14px;cursor:pointer;color:var(--quiet);white-space:nowrap;font-size:.92rem;
+}
+nav.tabs button[aria-selected="true"]{color:var(--purple);border-bottom-color:var(--purple);font-weight:600}
+nav.tabs button:hover{color:var(--ink)}
+nav.tabs button:focus-visible{outline:2px solid var(--purple);outline-offset:-4px}
+
+main{max-width:1000px;margin:0 auto;padding:24px 20px 80px}
+.panel[hidden]{display:none}
+.intro{font-family:var(--serif);font-size:1.02rem;max-width:62ch;margin-bottom:22px}
+.intro strong{color:var(--pink)}
+
+/* ---------- generic card ---------- */
+.card{background:var(--card);border:1px solid var(--rule);border-radius:4px;margin-bottom:18px}
+.card-head{padding:14px 18px;border-bottom:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;justify-content:space-between}
+.code{font-family:var(--serif);font-weight:700;font-size:1.15rem}
+.code small{font-weight:400;font-size:.8rem;color:var(--quiet);display:block;margin-top:2px;font-family:var(--sans)}
+
+.weekbar{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.weekbar button{
+  background:var(--card);border:1px solid var(--rule);border-radius:999px;
+  padding:7px 16px;cursor:pointer;font-size:.88rem;
+}
+.weekbar button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.weekbar button:focus-visible{outline:2px solid var(--purple);outline-offset:2px}
+
+/* ---------- ladder ---------- */
+.ladder{display:grid;grid-template-columns:22px 1fr;column-gap:16px}
+.rail{position:relative;margin:18px 0}
+.rail::before{content:"";position:absolute;left:10px;top:6px;bottom:6px;width:2px;background:var(--rule)}
+.rung{position:relative;padding:14px 18px 14px 0;border-bottom:1px solid var(--rule)}
+.rung:last-of-type{border-bottom:0}
+.rung h4{font-size:.78rem;letter-spacing:.04em;color:var(--purple);margin-bottom:6px;font-weight:700}
+.rung .body{font-family:var(--serif);font-size:.97rem}
+.rung .body em{color:var(--quiet)}
+.knob{
+  position:absolute;left:-38px;top:16px;width:22px;height:22px;border-radius:50%;
+  border:2px solid var(--rule);background:var(--card);cursor:pointer;padding:0;
+  display:grid;place-items:center;
+}
+.knob:focus-visible{outline:2px solid var(--purple);outline-offset:2px}
+.knob[aria-pressed="true"]{background:var(--green);border-color:var(--green)}
+.knob[aria-pressed="true"]::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+
+.meta-row{padding:13px 18px;border-top:1px solid var(--rule);font-size:.9rem}
+.meta-row .lbl{font-size:.74rem;letter-spacing:.04em;color:var(--quiet);margin-bottom:4px;font-weight:600}
+.vocab-chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{background:var(--purple-soft);color:var(--purple);border-radius:3px;padding:2px 8px;font-size:.82rem}
+.warn{background:var(--pink-soft)}
+.warn .lbl{color:var(--pink)}
+.next{background:var(--paper)}
+.next .body{font-family:var(--serif);font-style:italic;color:var(--quiet)}
+
+/* ---------- RAG ---------- */
+.rag{display:flex;gap:4px;align-items:center}
+.rag span.lbl{font-size:.75rem;color:var(--quiet);margin-right:4px}
+.rag button{
+  width:34px;height:30px;border:1px solid var(--rule);background:var(--card);
+  cursor:pointer;font-size:.82rem;font-weight:700;border-radius:3px;color:var(--quiet);
+}
+.rag button:focus-visible{outline:2px solid var(--purple);outline-offset:1px}
+.rag button[data-v="R"][aria-pressed="true"]{background:var(--pink);border-color:var(--pink);color:#fff}
+.rag button[data-v="A"][aria-pressed="true"]{background:var(--amber);border-color:var(--amber);color:#fff}
+.rag button[data-v="G"][aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
+
+/* ---------- tables ---------- */
+.scroller{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{border:1px solid var(--rule);padding:9px 11px;text-align:left;vertical-align:top}
+th{background:var(--purple-soft);color:var(--purple);font-size:.8rem}
+tbody tr:nth-child(even) td{background:color-mix(in srgb,var(--paper) 55%,transparent)}
+
+/* ---------- vocabulary ---------- */
+.search{width:100%;max-width:420px;padding:10px 12px;border:1px solid var(--rule);border-radius:3px;background:var(--card);color:var(--ink);margin-bottom:16px}
+.search:focus-visible{outline:2px solid var(--purple);outline-offset:1px}
+.glossary{columns:2 280px;column-gap:26px}
+.term{break-inside:avoid;padding:9px 0;border-bottom:1px solid var(--rule)}
+.term dt{font-weight:700;color:var(--purple);font-size:.93rem}
+.term dd{margin:2px 0 0;font-family:var(--serif);font-size:.93rem;color:var(--ink)}
+.misc{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.misc>div{padding:11px 14px;border-bottom:1px solid var(--rule);font-family:var(--serif);font-size:.93rem}
+.misc .x{background:var(--pink-soft);border-right:1px solid var(--rule)}
+.misc .t{background:var(--green-soft)}
+@media(max-width:620px){.misc{grid-template-columns:1fr}.misc .x{border-right:0}}
+
+/* ---------- quiz ---------- */
+.q{padding:16px 18px;border-bottom:1px solid var(--rule)}
+.q:last-child{border-bottom:0}
+.q .stem{font-family:var(--serif);font-size:1rem;margin-bottom:10px}
+.q .stem b{font-family:var(--sans);font-size:.8rem;color:var(--quiet);margin-right:8px;font-weight:600}
+.opt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--rule);
+  border-radius:3px;padding:10px 12px;margin-bottom:6px;cursor:pointer;font-size:.94rem}
+.opt:hover:not(:disabled){border-color:var(--purple)}
+.opt:focus-visible{outline:2px solid var(--purple);outline-offset:1px}
+.opt:disabled{cursor:default}
+.opt.correct{background:var(--green-soft);border-color:var(--green);font-weight:600}
+.opt.wrong{background:var(--pink-soft);border-color:var(--pink)}
+.fb{font-size:.87rem;margin-top:8px;padding:9px 12px;border-left:3px solid var(--purple);background:var(--purple-soft)}
+.score{padding:14px 18px;background:var(--paper);border-top:1px solid var(--rule);font-size:.93rem}
+
+/* ---------- exam ---------- */
+.marks{float:right;font-weight:700;color:var(--pink);font-size:.86rem}
+.qtext{font-family:var(--serif);font-size:1rem;margin-bottom:12px}
+.qtext .hint{display:block;font-style:italic;color:var(--quiet);font-size:.92rem;margin-top:6px}
+textarea,input[type=text]{
+  width:100%;font-family:var(--serif);font-size:.98rem;padding:10px 12px;
+  border:1px solid var(--rule);border-radius:3px;background:var(--card);
+  color:var(--purple);line-height:1.5;
+}
+textarea:focus-visible,input[type=text]:focus-visible{outline:2px solid var(--purple);outline-offset:1px}
+.fieldrow{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;margin-bottom:8px}
+@media(max-width:560px){.fieldrow{grid-template-columns:1fr;gap:4px}}
+.fieldrow label{font-size:.88rem;font-weight:600}
+.btn{
+  background:var(--purple);color:#fff;border:0;border-radius:3px;
+  padding:9px 18px;cursor:pointer;font-size:.9rem;font-weight:600;
+}
+.btn:hover{filter:brightness(1.08)}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.btn.ghost{background:transparent;color:var(--purple);border:1px solid var(--rule)}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.mp{display:flex;gap:9px;padding:7px 0;border-bottom:1px solid var(--rule);font-size:.91rem;align-items:flex-start}
+.mp:last-child{border-bottom:0}
+.mp .tick{flex:none;width:19px;height:19px;border-radius:3px;display:grid;place-items:center;font-size:.78rem;font-weight:700;margin-top:1px}
+.mp.hit .tick{background:var(--green);color:#fff}
+.mp.miss .tick{background:var(--pink-soft);color:var(--pink);border:1px solid var(--pink)}
+.mp.miss{color:var(--quiet)}
+.result{margin-top:14px;padding:14px 16px;background:var(--paper);border:1px solid var(--rule);border-radius:3px}
+.result h5{margin:0 0 8px;font-size:.8rem;letter-spacing:.04em;color:var(--quiet)}
+.model{margin-top:12px;padding:12px 14px;background:var(--green-soft);border-left:3px solid var(--green);font-family:var(--serif);font-size:.95rem}
+.selfmark{margin-top:12px;display:flex;gap:9px;align-items:center;flex-wrap:wrap;font-size:.9rem}
+.selfmark input{width:64px;text-align:center;font-family:var(--sans);color:var(--ink)}
+
+/* ---------- progress ---------- */
+.bigstat{display:flex;gap:26px;flex-wrap:wrap;padding:18px}
+.stat .n{font-family:var(--serif);font-size:2.1rem;font-weight:700;line-height:1}
+.stat .l{font-size:.8rem;color:var(--quiet)}
+.todo{padding:0 18px 18px}
+.todo li{margin-bottom:9px;font-size:.94rem}
+.bar{height:7px;background:var(--rule);border-radius:4px;overflow:hidden;min-width:90px}
+.bar i{display:block;height:100%;background:var(--green)}
+.empty{padding:18px;color:var(--quiet);font-family:var(--serif)}
+footer{border-top:1px solid var(--rule);padding:18px 20px;font-size:.78rem;color:var(--quiet);text-align:center}
+@media print{
+  nav.tabs,.btn,.masthead .keyline{display:none}
+  .panel[hidden]{display:none}
+  body{background:#fff}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="school">Al Yasmina British Academy · Science</div>
+    <h1>Year 7 Unit 1 — Working scientifically and the particle model</h1>
+    <div class="sub">Everything on here is assessed — on the paper, in a weekly quiz, or in the lab. Nothing that is not on here is assessed.</div>
+    <div class="keyline">
+      <span><i class="dot g"></i>Green — WWW, you met the criteria</span>
+      <span><i class="dot p"></i>Pink — EBI, this is your target</span>
+      <span><i class="dot v"></i>Purple — your response, always</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Sections">
+  <div class="wrap" id="tabs"></div>
+</nav>
+
+<main>
+  <section class="panel" id="p-ko" role="tabpanel"></section>
+  <section class="panel" id="p-vocab" role="tabpanel" hidden></section>
+  <section class="panel" id="p-quiz" role="tabpanel" hidden></section>
+  <section class="panel" id="p-exam" role="tabpanel" hidden></section>
+  <section class="panel" id="p-progress" role="tabpanel" hidden></section>
+</main>
+
+<footer>Al Yasmina British Academy · Science · Year 7 Unit 1 · Your work is saved in this browser only</footer>
+
+<script>
+"use strict";
+
+/* ==========================================================
+   DATA
+   ========================================================== */
+
+const CRITERIA = [
+{code:"WS5",week:1,title:"Hazards and risk",lesson:"Lessons 1 and 8 \u00b7 not on the paper \u2014 needed in every practical",
+ state:"A hazard is something that could cause harm. The risk is how likely it is to happen, and how serious it would be. I can name the common hazard symbols and say what each warns about.",stateCode:"unistructural",
+ describe:"I can describe the safety rules of this laboratory and say why each rule exists. I can name a precaution for a given hazard \u2014 a specific one, not just \u2018be careful\u2019.",describeCode:"multistructural",
+ explain:"I can explain why an activity is risky using hazard, likelihood and severity together \u2014 a serious hazard that is very unlikely may be a smaller risk than a minor one that happens often.",explainCode:"relational",
+ evaluate:"I can write a risk assessment for a practical I have not done before, and give a precaution that actually reduces the risk rather than one that sounds sensible.",evaluateCode:"extended abstract",
+ vocab:["hazard","risk","likelihood","severity","precaution","hazard symbol","risk assessment"],
+ wording:"Hazard and risk are not the same word. Hot water is a hazard; how likely you are to be scalded is the risk. \u201cWear goggles\u201d on its own is not a precaution unless you say what it protects against.",
+ igcse:"IGCSE expects you to identify hazards and give control measures in written answers, not only in the lab."},
+
+{code:"WS2",week:1,title:"Equipment, measurement and units",lesson:"Lesson 2 \u00b7 weekly quizzes 1 and 2 \u2014 not on the paper",
+ state:"Length \u2014 ruler, metres or cm. Mass \u2014 balance, grams. Volume \u2014 measuring cylinder, cm\u00b3. Temperature \u2014 thermometer, \u00b0C. Time \u2014 stopwatch, seconds.",stateCode:"unistructural",
+ describe:"I can read a scale correctly, including reading the meniscus at eye level, and record the measurement with its unit. I record every measurement with its unit, every time.",describeCode:"multistructural",
+ explain:"One instrument is more precise than another because its scale has smaller divisions, so it can detect a smaller change.",explainCode:"relational",
+ evaluate:"I can select the equipment for a measurement I have not been shown how to make, and say how precise that measurement needs to be and why.",evaluateCode:"extended abstract",
+ vocab:["SI unit","meniscus","scale","precise","resolution","measuring cylinder","balance"],
+ wording:"A measurement without a unit is not a measurement. Read the bottom of the meniscus, with your eye level with it \u2014 looking down gives a different answer.",
+ igcse:"IGCSE calls this resolution and expects you to justify the choice of instrument, not just use it."},
+
+{code:"WS1",week:1,title:"Variables and fair testing",lesson:"Lessons 3 and 11 \u00b7 Question 5a",
+ state:"The independent variable is the one thing you change. The dependent variable is the thing you measure. The control variables are what you deliberately keep the same.",stateCode:"unistructural",
+ describe:"Only one variable is changed at a time. Everything else on the list of control variables is kept the same. I can list the control variables in a method I have been given.",describeCode:"multistructural",
+ explain:"An investigation that changes two things at once cannot tell you which change caused the result, so the conclusion would not be safe.",explainCode:"relational",
+ evaluate:"I can choose the variables myself for an investigation I have designed, and justify why each control variable has to be kept the same \u2014 saying what would go wrong if it were not.",evaluateCode:"extended abstract",
+ vocab:["variable","independent variable","dependent variable","control variable","fair test","method"],
+ wording:"\u201cIt makes it a fair test\u201d is not an explanation. Say what would actually go wrong. The independent variable is the one YOU change; the dependent variable changes as a result.",
+ igcse:"In Year 9 this becomes CORMS \u2014 Change, Organism, Repeat, Measure, Same \u2014 which is the same idea with two extra letters and a name."},
+
+{code:"7G1",week:2,title:"States of matter and particle arrangement",lesson:"Lessons 4 and 5 \u00b7 Questions 1 and 7",
+ state:"The three states of matter are solid, liquid and gas. Solid \u2014 particles touching, in fixed positions, vibrating on the spot. Liquid \u2014 particles touching but able to slide past one another. Gas \u2014 particles far apart, moving quickly in all directions.",
+ describe:"I can draw the arrangement in each state: solid in a regular pattern, liquid touching but disordered, gas spread out with empty space between. In every state the particles are moving. In a solid they vibrate; in a liquid they slide; in a gas they travel.",
+ explain:"A solid keeps its shape because the forces of attraction hold the particles in fixed positions. A liquid takes the shape of its container because the particles can slide past one another but are still held together. A gas can be squashed because there is empty space between the particles. A liquid cannot, because its particles are already touching.",
+ evaluate:"Given a description of how the particles in an unfamiliar substance are arranged, I can predict how that substance will behave and justify my prediction.",
+ vocab:["particle","state of matter","solid","liquid","gas","arrangement","vibrate","compress","forces of attraction","volume"],
+ wording:"There is nothing between the particles of a gas \u2014 not air. Air is made of particles too, so \u201cair\u201d just asks the question again. Particles do not get bigger when heated; they move faster and further apart. The substance melts, not the particles.",
+ igcse:"IGCSE Chemistry topic 1 and Physics topic 5 use the same three arrangements and add density and the gas laws. The reasoning is identical; only the maths is new."},
+
+{code:"7G2",week:2,title:"Changes of state and energy",lesson:"Lessons 6 and 15 \u00b7 Questions 2 and 7",
+ state:"Melting solid \u2192 liquid. Freezing liquid \u2192 solid. Boiling liquid \u2192 gas, all through it, at the boiling point. Evaporation liquid \u2192 gas, at the surface, below the boiling point. Condensation gas \u2192 liquid.",
+ describe:"Heating gives particles energy: they move faster and further apart, so melting and boiling need energy to be transferred in. Cooling takes energy away: particles slow and move closer, so freezing and condensation transfer energy out. The mass never changes during a change of state \u2014 no particles are created or destroyed.",
+ explain:"Adding energy makes the particles move faster, so they can overcome the forces of attraction holding them in place. The mass stays the same when a liquid turns into a gas because the same particles are still there \u2014 they have only spread out.",
+ evaluate:"I can use the particle model to explain a real change of state I have not been taught \u2014 sweating, laundry drying, water forming on a window in an air-conditioned room \u2014 and predict what would change if it were hotter or colder.",
+ vocab:["melting","freezing","boiling","evaporation","condensation","energy","kinetic energy","conserved","mass"],
+ wording:"Sugar dissolves in tea; it does not melt. Melting is one substance heated until it becomes a liquid. Steam and water vapour are invisible \u2014 the white cloud above a kettle is liquid droplets that have already condensed. A gas has mass. Nothing is lost when water evaporates.",
+ igcse:"IGCSE adds specific heat capacity and latent heat \u2014 the numbers behind the flat section of the curve. The particle explanation you write now is the one still wanted at A level."},
+
+{code:"WS3",week:3,title:"Tables and graphs",lesson:"Lessons 7 and 8 \u00b7 Question 3a",
+ state:"Every column of a results table has a heading with a quantity and a unit. The independent variable goes on the left. Both axes of a graph are labelled with the quantity and the unit.",
+ describe:"I can plot a line graph with a sensible scale, accurate points, and one line drawn through the pattern rather than dot-to-dot. I can read a value off the line that I did not actually measure.",
+ explain:"I can describe the pattern my graph shows in words, using the numbers. A line of best fit is drawn rather than joining the dots because it shows the overall pattern rather than the error in each individual reading.",
+ evaluate:"I can decide for myself what kind of graph my data needs, choose a scale that uses most of the paper, and say what is wrong with a graph someone else has drawn.",
+ vocab:["table","heading","unit","axis","axes","scale","plot","line of best fit","pattern"],
+ wording:"Units go in the column heading, never beside every number. A scale that uses a quarter of the paper loses a mark however neat the rest is.",
+ igcse:"In Year 9 this becomes SLAPUK \u2014 Scale, Line, Axes, Points, Units, Key \u2014 six things to check, and the same six on every paper to Year 11."},
+
+{code:"7G3",week:3,title:"Heating and cooling curves",lesson:"Lessons 7, 8 and 9 \u00b7 Questions 3b and 3c",
+ state:"A heating or cooling curve has sloped sections and flat sections. The plateau is the flat part. It shows a change of state happening.",
+ describe:"On a sloped section the temperature is changing and the substance stays in one state. On a flat section the temperature holds constant while the substance changes from one state to another. The temperature of the flat section gives the melting point or the boiling point.",
+ explain:"The temperature stays constant during the flat section even though energy is still being transferred, because that energy is being used to overcome the forces of attraction between the particles rather than to make them move faster. Temperature measures how fast the particles are moving on average. If the energy is going into breaking the forces instead, the speed does not change, so neither does the temperature.",
+ evaluate:"I can use a cooling curve from my own results to find the melting point of a substance, describe what the particles are doing at each stage, and say whether my graph is good enough to trust.",
+ vocab:["heating curve","cooling curve","plateau","melting point","boiling point","forces of attraction","energy","temperature"],
+ wording:"Adding energy does not always raise the temperature. During a change of state it does not \u2014 that is what the flat part shows. This is the hardest idea in the unit and the one most often written the wrong way round.",
+ igcse:"IGCSE calls it latent heat and asks for it quantitatively. The explanation of the plateau does not change."},
+
+{code:"7G4",week:4,title:"Diffusion",lesson:"Lessons 10 and 11 \u00b7 Question 4 and question 5d",
+ state:"Diffusion is particles spreading out from where there are many of them to where there are few. Everyday examples: smelling food from another room; a tea bag colouring water.",
+ describe:"Diffusion happens in gases and in liquids, because in both the particles can move past one another. It does not happen in solids. Brownian motion \u2014 visible specks jiggling under a microscope \u2014 is the evidence that particles are moving on their own.",
+ explain:"Particles are already moving randomly and colliding with one another. Over time this random movement spreads them from high concentration to low concentration. Diffusion is faster in a gas than in a liquid because gas particles move faster and have further to travel between collisions. Diffusion is faster when it is warmer because the particles have more energy and move faster.",
+ evaluate:"I can apply diffusion to a situation I have never seen before and predict what would happen if the temperature or the state were changed, giving my reason.",
+ vocab:["diffusion","concentration","random","collision","Brownian motion","kinetic energy"],
+ wording:"Nothing pushes the particles. They are already moving randomly on their own \u2014 this is the answer examiners look for. Random does not mean strange. It means in no particular direction, with no pattern.",
+ igcse:"IGCSE Biology uses diffusion for the alveoli and the villi, and adds the idea of a concentration gradient. Same mechanism, living context."},
+
+{code:"WS4",week:4,title:"Anomalies, conclusions and improvements",lesson:"Lesson 11 \u00b7 Questions 5b and 5c",
+ state:"An anomaly is a result that does not fit the pattern the others make. A mean is calculated from the repeats, with the anomaly left out.",
+ describe:"I can calculate a mean from repeated readings, excluding the anomaly, and suggest a reason the anomaly happened. I can write a conclusion that says what my data actually shows.",
+ explain:"I can explain whether a result is genuinely anomalous or just surprising \u2014 the test is whether it fits the pattern, not whether it is what I expected.",
+ evaluate:"I can suggest one specific improvement to the method and say exactly what it would fix. \u201cBe more careful\u201d and \u201cdo it again\u201d are not improvements.",
+ vocab:["anomaly","mean","repeat","reliable","precise","conclusion","improvement","pattern"],
+ wording:"An anomaly is left out of the mean. It is never deleted from the table. Precise and accurate are different: precise is repeats close together, accurate is close to the true value. You can be precisely wrong.",
+ igcse:"This is AO3, and it is a fifth of every IGCSE science paper. It is the strand students find hardest, and it starts here."},
+
+{code:"7G5",week:4,title:"Gas pressure",lesson:"Lesson 12 \u00b7 Question 6",
+ state:"Gas pressure is caused by gas particles colliding with the walls of their container.",
+ describe:"When a gas is heated the particles gain energy and move faster, so they hit the walls more often and with more force. When the same gas is squeezed into a smaller space the particles hit the walls more often, because there is less distance between collisions.",
+ explain:"Heating a gas in a sealed container increases the pressure because faster particles collide with the walls more frequently and harder, and pressure is the total effect of all those collisions. Reducing the volume increases the pressure for the same reason \u2014 more collisions per second on the same area of wall.",
+ evaluate:"I can explain a real example \u2014 a car tyre after two hours on an Abu Dhabi road in August, a sealed bottle carried out of an air-conditioned room \u2014 and predict what happens if it is cooled instead.",
+ vocab:["pressure","collision","volume","sealed","kinetic energy","force"],
+ wording:"Pressure is not about feeling stressed and volume is not about loudness. In science pressure is particles hitting the walls, and volume is how much space something takes up, in cm\u00b3.",
+ igcse:"This is the reasoning behind the whole of the breathing mechanism in Year 8, and it becomes the gas laws in IGCSE Physics topic 5, where it is calculated rather than described."}
+];
+
+const WEEK_LABELS = {1:"Week 1 \u2014 Working scientifically",2:"Week 2 \u2014 Particles and changes of state",3:"Week 3 \u2014 Graphs and cooling curves",4:"Week 4 \u2014 Diffusion, enquiry and gas pressure"};
+
+const GLOSSARY = [
+["particle","a tiny piece that everything is made of"],
+["state of matter","whether something is a solid, a liquid or a gas"],
+["solid","particles touching, in fixed positions, vibrating on the spot"],
+["liquid","particles touching but able to slide past one another"],
+["gas","particles far apart, moving quickly in all directions"],
+["energy","what particles gain when heated \u2014 it makes them move more"],
+["kinetic energy","the energy something has because it is moving"],
+["temperature","how fast the particles are moving on average. \u00b0C"],
+["forces of attraction","the pull between particles that holds them together"],
+["concentration","how many particles there are in a given space"],
+["pressure","the force of gas particles hitting the container walls"],
+["volume","how much space something takes up. cm\u00b3"],
+["mass","how much stuff there is. g. Never changes in a change of state"],
+["vibrate","shake on the spot without going anywhere"],
+["compress","squash into a smaller volume. Only gases can be compressed"],
+["melting","solid \u2192 liquid"],
+["freezing","liquid \u2192 solid"],
+["boiling","liquid \u2192 gas, all through it, at the boiling point"],
+["evaporation","liquid \u2192 gas, at the surface, below the boiling point"],
+["condensation","gas \u2192 liquid"],
+["diffusion","particles spreading from high to low concentration"],
+["collision","one particle hitting another, or hitting a wall"],
+["random","in no particular direction, with no pattern"],
+["Brownian motion","visible specks jiggling \u2014 proof particles move on their own"],
+["conserved","stays the same. Mass is conserved when water evaporates"],
+["variable","anything in an investigation that could change"],
+["independent variable","the one thing you change"],
+["dependent variable","the thing you measure"],
+["control variable","what you deliberately keep the same"],
+["fair test","only the independent variable is changed"],
+["anomaly","a result that does not fit the pattern"],
+["mean","add the repeats, divide by how many. Leave the anomaly out"],
+["reliable","you get a similar result when you repeat it"],
+["precise","repeat readings that are close to each other"],
+["meniscus","the curve at a liquid surface. Read the bottom, at eye level"],
+["SI unit","the agreed unit. m, g, cm\u00b3, s, \u00b0C"],
+["plateau","a flat section on a graph"],
+["line of best fit","one line through the pattern. Not dot-to-dot"],
+["hazard and risk","hazard is what could harm you; risk is how likely it is"],
+["State","a short answer. No reason needed"],
+["Name","give the word. One or two words is enough"],
+["Describe","say what happens"],
+["Explain","say what happens AND why. Use \u2018so\u2019 or \u2018because\u2019"],
+["Suggest","use what you know on something you have not been taught"],
+["Compare","how they are the same and different. Write about both"],
+["Determine","work it out from the data or the graph"],
+["Evaluate","good points, bad points, then your judgement"],
+["3 marks","means three separate points. The marks tell you how much to write"]
+];
+
+const MISCONCEPTIONS = [
+["\u201cState\u201d always means solid, liquid or gas.","At the start of a question it is an instruction \u2014 give a short answer. Q4 says \u201cState what is meant by diffusion.\u201d"],
+["Gas means air.","Air is one particular mixture of gases. Gas is a state of matter."],
+["There is air between the particles of a gas.","There is nothing there \u2014 empty space. Air is made of particles too, so that answer just asks the question again."],
+["The white cloud above a kettle is steam.","Steam and water vapour are invisible. The cloud is tiny drops of liquid that have already condensed."],
+["Sugar melts in tea.","It dissolves. Melting is one substance heated until it turns into a liquid."],
+["Adding energy always raises the temperature.","Not during a change of state. That is what the flat part of the curve shows."],
+["Particles get bigger when you heat them.","They move faster and further apart. A particle never changes size."],
+["The particles melt.","The substance melts. The particles break out of their fixed positions."],
+["A gas weighs nothing.","Gas has mass. When water evaporates, nothing is lost."],
+["Something pushes the particles so they diffuse.","Nothing pushes them. They are already moving randomly on their own."],
+["Volume means loudness.","In science it is how much space something takes up, in cm\u00b3."],
+["Pressure is about feeling stressed.","Gas pressure is particles hitting the walls of a container."],
+["Random means strange or unexpected.","It means in no particular direction, with no pattern."],
+["Precise and accurate are the same.","Precise is repeats close together. Accurate is close to the true value. You can be precise and still be wrong."],
+["An anomaly is any result that surprises you.","It is one that does not fit the pattern of your other results."]
+];
+
+const STEMS = [
+"\u201cThe particles are \u2026 so the substance \u2026\u201d",
+"\u201cWhen energy is transferred to the substance, the particles \u2026 which means \u2026\u201d",
+"\u201cI know this because the data shows \u2026\u201d",
+"\u201cThis result is anomalous because \u2026\u201d",
+"\u201cA better method would be to \u2026 so that \u2026\u201d"
+];
+
+const STRETCH = [
+"What actually holds the particles together in a solid?",
+"Water boils at 100 \u00b0C. So why does a puddle dry up at 20 \u00b0C?",
+"Why is diffusion much faster in a gas than in a liquid?",
+"If you cooled a gas until its particles stopped completely, what temperature would that be?",
+"A sealed crisp packet puffs up on a plane. Explain why, using two ideas from this unit.",
+"Desalination: which two changes of state, in which order, and why is the salt left behind?"
+];
+
+const COMMAND_WORDS = [
+["State","Give a short answer. No reason needed, and no marks for one."],
+["Name","Give the word. One or two words is enough."],
+["Describe","Say what happens. Still no because."],
+["Explain","Say what happens AND why. Use \u2018so\u2019 or \u2018because\u2019."],
+["Suggest","Use what you know on something you have not been taught."],
+["Compare","How they are the same and different. Write about both."],
+["Determine","Work it out from the data or the graph."],
+["Evaluate","Good points, bad points, then your judgement."]
+];
+
+const QUIZZES = [
+{week:1,label:"Week 1",title:"Working scientifically",note:"Lessons 1 to 3",qs:[
+ {q:"Which piece of equipment measures the volume of a liquid most accurately?",o:["Beaker","Measuring cylinder","Test tube","Conical flask"],a:1,c:"WS2",p:"\u2014"},
+ {q:"Which unit is used to measure mass?",o:["cm\u00b3","\u00b0C","g","s"],a:2,c:"WS2",p:"\u2014"},
+ {q:"A thermometer scale runs from 20 \u00b0C to 30 \u00b0C with ten equal divisions. The liquid is three divisions above 20. What is the temperature?",o:["20.3 \u00b0C","23 \u00b0C","26 \u00b0C","30 \u00b0C"],a:1,c:"WS2",p:"\u2014"},
+ {q:"A student investigates how the amount of salt affects how quickly ice melts. What is the independent variable?",o:["The time taken for the ice to melt","The amount of salt added","The size of the ice cube","The temperature of the room"],a:1,c:"WS1",p:"Q5a"},
+ {q:"In the same investigation, which of these is a control variable?",o:["The amount of salt added","The time taken to melt","The size of the ice cube","How fast the ice melts"],a:2,c:"WS1",p:"Q5a"},
+ {q:"In the same investigation, what is the dependent variable?",o:["The time taken for the ice to melt","The amount of salt added","The type of container","The room temperature"],a:0,c:"WS1",p:"Q5a"},
+ {q:"A bottle carries the corrosive hazard symbol. What does this mean?",o:["It catches fire easily","It damages skin and eyes","It is harmful if swallowed","It may explode"],a:1,c:"WS2",p:"\u2014"},
+ {q:"You spill a chemical on your hand. What should you do first?",o:["Tell the person next to you","Wash it off with plenty of water and tell your teacher","Wipe it on your jumper","Carry on and wash your hands later"],a:1,c:"WS2",p:"\u2014"},
+ {q:"A student changes two things at once in an investigation. Why is this a problem?",o:["It takes longer to do","You cannot tell which change caused the result","It uses more equipment","The results will be too high"],a:1,c:"WS1",p:"Q5a"},
+ {q:"Which command word tells you that you must give a reason?",o:["State","Name","Explain","List"],a:2,c:"CW",p:"\u2014"}
+]},
+{week:2,label:"Week 2",title:"States of matter and changes of state",note:"Lessons 4 to 6",qs:[
+ {q:"Which list gives the three states of matter?",o:["Solid, powder, gas","Solid, liquid, gas","Liquid, gas, vapour","Solid, liquid, metal"],a:1,c:"7G1",p:"Q1a"},
+ {q:"In which state are the particles arranged in a regular pattern and vibrating on the spot?",o:["Solid","Liquid","Gas","All three"],a:0,c:"7G1",p:"Q1a"},
+ {q:"Which state has a fixed volume but takes the shape of its container?",o:["Solid","Liquid","Gas","None of them"],a:1,c:"7G1",p:"Q1a"},
+ {q:"What is the name of the change of state when a gas turns into a liquid?",o:["Evaporation","Condensation","Melting","Freezing"],a:1,c:"7G2",p:"Q2a"},
+ {q:"When a solid is heated and melts, the particles\u2026",o:["get bigger","gain energy and move more","disappear","stay exactly the same"],a:1,c:"7G2",p:"Q2b"},
+ {q:"A student investigates how the temperature of water affects how quickly food colouring spreads. What is the dependent variable?",o:["The temperature of the water","The time taken for the colour to spread","The volume of water","The size of the drop"],a:1,c:"WS1",p:"Q5a"},
+ {q:"Which unit is used to measure the volume of a liquid?",o:["g","cm\u00b3","\u00b0C","N"],a:1,c:"WS2",p:"\u2014"},
+ {q:"Which piece of equipment would you use to measure temperature?",o:["Measuring cylinder","Balance","Thermometer","Stopclock"],a:2,c:"WS2",p:"\u2014"},
+ {q:"What is found in the space between the particles of a gas?",o:["Air","Nothing","Water vapour","Dust"],a:1,c:"7G1",p:"Q1c"},
+ {q:"Which command word means \u2018say what happens\u2019, without needing a reason?",o:["Explain","Describe","Evaluate","Suggest"],a:1,c:"CW",p:"\u2014"}
+]},
+{week:3,label:"Week 3",title:"Cooling curves, graphs and diffusion",note:"Lessons 7 to 9",qs:[
+ {q:"On a cooling curve, what does the flat section show?",o:["The thermometer has stopped working","The substance is changing state","The substance is heating up","Nothing is happening"],a:1,c:"7G3",p:"Q3b"},
+ {q:"During the flat section of a cooling curve, the particles\u2026",o:["stop moving completely","move faster and faster","slow down and come closer together to form a solid","get smaller"],a:2,c:"7G3",p:"Q3c"},
+ {q:"On a graph of temperature against time, which quantity goes on the x-axis?",o:["Temperature","Time","Either one","Neither"],a:1,c:"WS3",p:"Q3a"},
+ {q:"Which of these best describes diffusion?",o:["Particles being pushed by a force","Particles spreading out from a high to a low concentration","A solid turning into a liquid","Particles being heated"],a:1,c:"7G4",p:"Q4a"},
+ {q:"Complete the sentence. During diffusion, particles move from an area of \u2026",o:["low concentration to high concentration","high concentration to low concentration","cold to hot","high pressure to high concentration"],a:1,c:"7G4",p:"Q4b"},
+ {q:"How are the particles arranged in a liquid?",o:["Far apart and random","Close together in a regular pattern","Close together but randomly arranged","Fixed in position and unable to move"],a:2,c:"7G1",p:"Q1a"},
+ {q:"What is the name of the change of state when a gas turns into a liquid?",o:["Melting","Freezing","Condensation","Evaporation"],a:2,c:"7G2",p:"Q2a"},
+ {q:"When a liquid freezes, is energy added or removed?",o:["Added","Removed","Neither","Both at once"],a:1,c:"7G2",p:"Q7"},
+ {q:"A class tested how temperature affects diffusion, but used a different sized drop of colouring each time. Which variable was not controlled?",o:["The temperature","The size of the drop","The time taken","The volume of water"],a:1,c:"WS1",p:"Q5a"},
+ {q:"A thermometer reads halfway between 40 \u00b0C and 42 \u00b0C. What is the temperature?",o:["40.5 \u00b0C","41 \u00b0C","41.5 \u00b0C","42 \u00b0C"],a:1,c:"WS2",p:"\u2014"}
+]},
+{week:4,label:"Week 4",title:"Gas pressure, anomalies and evaluation",note:"Lessons 10 to 12",qs:[
+ {q:"What causes the pressure of a gas inside a sealed container?",o:["The weight of the gas","The particles colliding with the container walls","Air pushing in from outside","The container shrinking"],a:1,c:"7G5",p:"Q6a"},
+ {q:"What happens to the speed of gas particles when the gas is heated?",o:["They slow down","They move faster","They stop","They stay the same"],a:1,c:"7G5",p:"Q6b"},
+ {q:"A car is driven for two hours in Abu Dhabi in August. Why does the pressure inside the tyres increase?",o:["The tyres shrink","The particles move faster and hit the walls more often and harder","More air is added by the road","The rubber gets heavier"],a:1,c:"7G5",p:"Q6c"},
+ {q:"A student records these times in seconds: 21, 23, 22, 47, 22. Which is the anomalous result?",o:["21","23","47","22"],a:2,c:"WS4",p:"Q5b"},
+ {q:"Which of these is a specific enough improvement to a method?",o:["Be more careful","Do the experiment again","Use a thermometer to check the water is at 60 \u00b0C before starting","Concentrate harder"],a:2,c:"WS4",p:"Q5c"},
+ {q:"Why does diffusion happen more quickly on a hot day?",o:["There is more air","The particles have more energy and move faster","The particles get bigger","There is less pressure"],a:1,c:"7G4",p:"Q4d"},
+ {q:"Why does the temperature stay constant while a substance is freezing?",o:["The thermometer is faulty","No energy is being transferred","The energy comes from the particles joining together rather than from slowing down","The substance has stopped cooling"],a:2,c:"7G3",p:"Q3c"},
+ {q:"Which change of state happens only at the surface of a liquid, below its boiling point?",o:["Boiling","Evaporation","Condensation","Melting"],a:1,c:"7G2",p:"Q2a"},
+ {q:"Which state of matter can be compressed, and why?",o:["Solid, because the particles are fixed","Liquid, because the particles can slide","Gas, because the particles are far apart with space between them","All three equally"],a:2,c:"7G1",p:"Q1b"},
+ {q:"A graph has numbers on both axes but no words or units. What is wrong with it?",o:["Nothing","The axes are not labelled with the quantity and unit","There are too many points","The scale is too small"],a:1,c:"WS3",p:"Q3a"}
+]},
+{week:5,label:"Revision",title:"The whole unit",note:"Set on the Monday before the paper. This is not a test.",qs:[
+ {q:"A student tests how the temperature of water affects how quickly colouring spreads. What is the independent variable?",o:["The temperature of the water","The time taken to spread","The volume of water","The size of the drop"],a:0,c:"WS1",p:"Q5a"},
+ {q:"Which unit would you use to record the volume of water in a beaker?",o:["g","cm\u00b3","N","\u00b0C"],a:1,c:"WS2",p:"\u2014"},
+ {q:"Which of these makes a graph easier to read correctly?",o:["Joining every point with a zigzag line","Labelling each axis with the quantity and its unit","Using as small a scale as possible","Leaving the axes blank"],a:1,c:"WS3",p:"Q3a"},
+ {q:"Results are 15, 16, 15, 38, 16. What should you do with the value 38 when calculating the mean?",o:["Include it as normal","Leave it out and note it as anomalous","Change it to 16","Start the whole experiment again"],a:1,c:"WS4",p:"Q5b"},
+ {q:"Which statement about a solid is correct?",o:["The particles are far apart and move quickly","The particles are close together in a regular pattern and vibrate","The particles slide past each other freely","There is air between the particles"],a:1,c:"7G1",p:"Q1a"},
+ {q:"Which change of state involves particles losing energy and moving closer together?",o:["Melting","Boiling","Freezing","Evaporation"],a:2,c:"7G2",p:"Q2a"},
+ {q:"What does the flat part of a cooling curve tell you?",o:["The substance is changing state","The substance is getting hotter","The thermometer is broken","Nothing is happening"],a:0,c:"7G3",p:"Q3b"},
+ {q:"Why does the smell of food travel across a room?",o:["Someone pushes the particles","The particles move randomly and spread from high to low concentration","The air carries the smell in one direction only","Smell particles are lighter than air"],a:1,c:"7G4",p:"Q4c"},
+ {q:"Gas pressure increases when a gas is heated because\u2026",o:["the container gets smaller","the particles collide with the walls more often and with more force","more gas is made","the particles get bigger"],a:1,c:"7G5",p:"Q6c"},
+ {q:"Which command word asks you to give both the good points and the bad points, then judge?",o:["Describe","State","Evaluate","Name"],a:2,c:"CW",p:"\u2014"}
+]}
+];
+
+const EXAM = [
+{n:"1",parts:[
+ {id:"1a",marks:3,c:"7G1",ao:"AO1",stem:"Complete the table by naming the state of matter described.",
+  fields:[
+   {label:"Particles far apart, moving quickly in all directions",need:[["gas"]],model:"gas"},
+   {label:"Particles touching, in fixed positions, vibrating on the spot",need:[["solid"]],model:"solid"},
+   {label:"Particles touching but able to slide past one another",need:[["liquid"]],model:"liquid"}
+  ]},
+ {id:"1b",marks:1,c:"7G1",ao:"AO1",stem:"Name the state of matter that can be compressed.",
+  mps:[{t:"Gas",need:[["gas"]]}],model:"A gas."},
+ {id:"1c",marks:1,c:"7G1",ao:"AO1",stem:"State what holds the particles of a solid in their fixed positions.",
+  mps:[{t:"Forces of attraction (between the particles)",need:[["force","attraction","bond"]]}],
+  model:"The forces of attraction between the particles."}
+]},
+{n:"2",parts:[
+ {id:"2a",marks:3,c:"7G2",ao:"AO1",stem:"Name the change of state that takes place in each case.",
+  fields:[
+   {label:"(i) A liquid turns into a solid",need:[["freez"]],model:"freezing"},
+   {label:"(ii) A liquid turns into a gas all through it, at its boiling point",need:[["boil"]],model:"boiling"},
+   {label:"(iii) A gas turns into a liquid",need:[["condens"]],model:"condensation"}
+  ]},
+ {id:"2b",marks:1,c:"7G2",ao:"AO1",stem:"Describe what happens to the particles in a liquid as it freezes.",
+  mps:[{t:"They slow down and move closer together into fixed positions",need:[["slow","lose energy","less energy","closer","fixed","stop moving around","vibrat"]]}],
+  model:"They lose energy, slow down and move closer together until they are held in fixed positions."},
+ {id:"2c",marks:3,c:"7G2",ao:"AO2",
+  stem:"Washing is hung outside in Abu Dhabi in the morning. By lunchtime it is completely dry. Explain, using the particle model, what has happened to the water.",
+  mps:[
+   {t:"The water has evaporated \u2014 it has turned from a liquid into a gas",need:[["evaporat"],["gas","vapour","water vapour"]]},
+   {t:"The particles at the surface gained energy from the heat of the sun",need:[["energy"],["surface","sun","heat","hot","warm"]]},
+   {t:"They moved faster, escaped the forces of attraction and spread out into the air",need:[["faster","escape","overcome","break","spread","into the air","away"]]}
+  ],
+  model:"The water has evaporated. The particles at the surface gained energy from the heat of the sun, so they moved faster. They gained enough energy to overcome the forces of attraction holding them in the liquid, escaped from the surface as a gas, and spread out into the air."}
+]},
+{n:"3",intro:"A student heated a solid and recorded its temperature as it warmed. The results are shown in the table.",
+ table:{head:["Time (min)","0","1","2","3","4","5","6","7"],rows:[["Temp (\u00b0C)","20","34","46","53","53","53","62","71"]]},
+ parts:[
+ {id:"3a",marks:3,c:"WS3",ao:"AO3",
+  stem:"Plot a graph of temperature against time on graph paper, and draw a line through the pattern.",
+  hint:"Draw it on paper first. Then type what you did for each of the three marks, and mark yourself against the list.",
+  mps:[
+   {t:"Both axes labelled with the quantity and the unit",need:[["label","axis","axes"],["unit"]]},
+   {t:"A sensible, evenly spaced scale filling more than half the grid",need:[["scale"],["half","even","most","sensible","fill","big"]]},
+   {t:"Points plotted accurately, with one line through the pattern rather than dot-to-dot",need:[["plot","point","cross","line"],["line","pattern","best fit","through"]]}
+  ],
+  model:"Time goes on the x axis and temperature on the y axis, each labelled with the quantity and its unit. The scale is evenly spaced and uses more than half the grid. The points are plotted accurately as small crosses, with one line drawn through the pattern rather than joining the dots."},
+ {id:"3b",marks:1,c:"7G3",ao:"AO2",stem:"State what is happening to the substance between 3 and 5 minutes.",
+  mps:[{t:"It is melting \u2014 changing from a solid to a liquid",need:[["melt","changing state","change of state","solid to liquid"]]}],
+  model:"It is melting \u2014 changing state from a solid to a liquid."},
+ {id:"3c",marks:2,c:"7G3",ao:"AO3",
+  stem:"Energy is still being transferred to the substance between 3 and 5 minutes, but the temperature does not rise. Explain why.",
+  mps:[
+   {t:"The energy is being used to overcome the forces of attraction between the particles",need:[["force","attraction","bond"],["overcome","break","separate","used to","goes into"]]},
+   {t:"Rather than making the particles move faster \u2014 and temperature measures how fast they move",need:[["faster","speed","move more","how fast","kinetic"]]}
+  ],
+  model:"The energy is being used to overcome the forces of attraction holding the particles in fixed positions, rather than to make them move faster. Temperature measures how fast the particles are moving on average, so while the speed does not change, neither does the temperature."}
+]},
+{n:"4",parts:[
+ {id:"4a",marks:1,c:"7G4",ao:"AO1",stem:"State what is meant by diffusion.",
+  mps:[{t:"Particles spreading from where there are many of them to where there are few",need:[["spread","move","travel"],["high","many","concentrated","lots"]]}],
+  model:"Diffusion is particles spreading out from where there are many of them to where there are few."},
+ {id:"4b",marks:2,c:"7G4",ao:"AO1",
+  stem:"Complete the sentence. Diffusion takes place in \u2026\u2026\u2026\u2026 and in \u2026\u2026\u2026\u2026 , because in both the particles can move past one another.",
+  fields:[
+   {label:"First state",need:[["gas","liquid"]],model:"gases"},
+   {label:"Second state",need:[["liquid","gas"]],model:"liquids"}
+  ]},
+ {id:"4c",marks:2,c:"7G4",ao:"AO2",
+  stem:"A drop of ink is added to a beaker of still water. Ten minutes later the whole beaker is coloured. Explain, in terms of particles, why this happens.",
+  mps:[
+   {t:"The particles are already moving randomly and colliding with one another",need:[["random","moving on their own","already moving","collid","bump"]]},
+   {t:"Over time they spread from where there are many to where there are few, until they are evenly spread",need:[["spread","high","low","evenly","concentration","throughout"]]}
+  ],
+  model:"The ink and water particles are already moving randomly and colliding with one another. Nothing pushes them. Over time this random movement spreads the ink particles from where there are many of them to where there are few, until they are evenly spread through the beaker."},
+ {id:"4d",marks:1,c:"7G4",ao:"AO2",stem:"Suggest why this would happen more slowly in cold water.",
+  mps:[{t:"The particles have less energy, so they move more slowly",need:[["less energy","slower","slowly","not as fast","lower energy","less kinetic"]]}],
+  model:"The particles have less energy in cold water, so they move more slowly and take longer to spread."}
+]},
+{n:"5",intro:"A class investigated how the temperature of water affects the time taken for a purple crystal to colour a 5 cm column of water. They used the same volume of water and the same size crystal each time. Each temperature was repeated three times.",
+ table:{head:["Temperature (\u00b0C)","Time 1 (s)","Time 2 (s)","Time 3 (s)","Mean (s)"],
+        rows:[["30","148","152","150","150"],["45","106","109","103","106"],["60","74","188","70","72"],["75","45","48","42","45"]]},
+ parts:[
+ {id:"5a",marks:2,c:"WS1",ao:"AO1",stem:"State the independent variable and one control variable in this investigation.",
+  fields:[
+   {label:"Independent variable",need:[["temperature","temp"]],model:"the temperature of the water"},
+   {label:"One control variable",need:[["volume","size","crystal","amount","5 cm","distance","column","same water"]],model:"the volume of water (or the size of the crystal, or the 5 cm distance)"}
+  ]},
+ {id:"5b",marks:2,c:"WS4",ao:"AO3",stem:"One of the results is anomalous. Identify it and suggest one reason for it.",
+  mps:[
+   {t:"188 s, the second repeat at 60 \u00b0C",need:[["188"]]},
+   {t:"A sensible reason \u2014 the water had cooled, the stopwatch was started or stopped late, the crystal was a different size, or the reading was misread",need:[["cool","stopwatch","timer","late","started","stopped","different size","bigger","smaller","misread","mistake","not at 60","wrong temperature","measured wrong"]]}
+  ],
+  model:"188 s at 60 \u00b0C is anomalous, because it does not fit the pattern the other results make. It may be that the water had cooled below 60 \u00b0C before that repeat was started, or that the stopwatch was stopped late."},
+ {id:"5c",marks:1,c:"WS4",ao:"AO3",stem:"Suggest one improvement to the method that would make the results more reliable.",
+  mps:[{t:"A specific improvement \u2014 e.g. check the temperature with a thermometer immediately before starting, use a water bath, or take more repeats",need:[["thermometer","water bath","check the temperature","more repeats","five repeats","same person","stopwatch","measure the crystal","weigh"]]}],
+  model:"Use a thermometer to check the water is at the right temperature immediately before each repeat is started. (Taking more than three repeats, or using a water bath to hold the temperature steady, also score.)"},
+ {id:"5d",marks:1,c:"7G4",ao:"AO2",stem:"Explain, in terms of particles, why the colour spreads more quickly at a higher temperature.",
+  mps:[{t:"The particles have more energy, so they move faster",need:[["more energy","faster","quicker","more kinetic"]]}],
+  model:"The particles have more energy at a higher temperature, so they move faster and spread out more quickly."}
+]},
+{n:"6",parts:[
+ {id:"6a",marks:1,c:"7G5",ao:"AO1",stem:"State what causes the pressure of a gas inside a sealed container.",
+  mps:[{t:"The gas particles colliding with the walls of the container",need:[["collid","hit","bounce","strike","banging"],["wall","side","container","surface"]]}],
+  model:"The gas particles colliding with the walls of the container."},
+ {id:"6b",marks:1,c:"7G5",ao:"AO1",stem:"State what happens to the pressure of a gas when it is squeezed into a smaller space.",
+  mps:[{t:"It increases",need:[["increas","goes up","higher","rises","more"]]}],
+  model:"It increases."},
+ {id:"6c",marks:2,c:"7G5",ao:"AO2",
+  stem:"A sealed plastic bottle is carried out of an air-conditioned room into the heat outside. The sides of the bottle bulge outwards. Explain why.",
+  mps:[
+   {t:"The particles gain energy and move faster",need:[["energy","faster","speed"]]},
+   {t:"So they hit the walls more often and with more force, which increases the pressure",need:[["more often","harder","more force","frequent","increas","pressure"]]}
+  ],
+  model:"The gas particles inside gain energy from the heat and move faster. They therefore collide with the walls of the bottle more often and with more force, so the pressure inside increases and pushes the sides outwards."}
+]},
+{n:"7",intro:"On a hot day in Abu Dhabi, water forms on the outside of a cold glass of juice. Later the glass warms up, and the water on the outside disappears.",
+ parts:[
+ {id:"7",marks:6,c:"7G2",ao:"AO2",cap:6,
+  stem:"Explain the two changes of state that take place, in terms of the arrangement, movement and energy of the particles.",
+  mps:[
+   {t:"The first change is condensation, gas to liquid",need:[["condens"]]},
+   {t:"Water vapour in the air loses energy to the cold glass",need:[["loses energy","lose energy","transfers energy","cools","cold glass","takes energy","gives energy"]]},
+   {t:"Its particles slow down and move closer together",need:[["slow"],["closer","together","nearer"]]},
+   {t:"So the forces of attraction hold them as a liquid on the glass",need:[["force","attraction","liquid","droplet","held"]]},
+   {t:"The second change is evaporation, liquid to gas",need:[["evaporat"]]},
+   {t:"The particles at the surface gain energy as the glass warms up",need:[["gain energy","more energy","warms","heat","surface"]]},
+   {t:"They move faster and overcome the forces of attraction",need:[["faster","overcome","escape","break"]]},
+   {t:"So they move far apart and spread out into the air \u2014 the mass is conserved, no particles are lost",need:[["far apart","spread","into the air","conserv","mass","not lost","nothing is lost"]]}
+  ],
+  model:"The first change is condensation \u2014 gas to liquid. Water vapour particles in the warm air hit the cold glass and transfer energy to it. They slow down and move closer together, so the forces of attraction between them hold them as a liquid, and droplets form on the glass. The second change is evaporation \u2014 liquid to gas. As the glass warms up, the particles at the surface of the droplets gain energy and move faster. They gain enough energy to overcome the forces of attraction, escape from the surface, and move far apart in all directions as they spread into the air. The mass is conserved throughout \u2014 the same particles exist the whole time, they have only rearranged."}
+]}
+];
+
+const AO_TOTALS = {AO1:16,AO2:16,AO3:8};
+const PAPER_TOTAL = 40;
+const CODES = CRITERIA.map(c=>c.code);
+const RUNG_TOTAL = CRITERIA.length*4;
+
+/* ==========================================================
+   STATE
+   ========================================================== */
+const KEY = "yba-y7-u1-v1";
+let S = {rungs:{},checkins:[],quiz:{},exam:{}};
+
+function load(){
+  try{
+    const raw = localStorage.getItem(KEY);
+    if(raw){ const p = JSON.parse(raw); if(p && typeof p === "object") S = Object.assign(S,p); }
+  }catch(e){ /* storage unavailable — carry on without saving */ }
+}
+let saveTimer=null;
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(()=>{
+    try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){}
+  },250);
+}
+load();
+
+/* ==========================================================
+   HELPERS
+   ========================================================== */
+const $ = (s,r)=> (r||document).querySelector(s);
+function el(tag,cls,html){const n=document.createElement(tag);if(cls)n.className=cls;if(html!=null)n.innerHTML=html;return n;}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+
+function normalise(s){
+  return " "+String(s||"")
+    .toLowerCase()
+    .replace(/[’']/g,"")
+    .replace(/[^a-z0-9°]+/g," ")
+    .replace(/\s+/g," ")
+    .trim()+" ";
+}
+function hasAny(norm,list){
+  return list.some(w=>{
+    const t=normalise(w).trim();
+    if(!t) return false;
+    if(String(w).charAt(0)==="=") return norm.indexOf(" "+t+" ")!==-1;   // whole word only
+    return norm.indexOf(" "+t)!==-1;                                      // word-start, allows endings
+  });
+}
+function scoreMP(norm,mp){ return (mp.need||[]).every(group=>hasAny(norm,group)); }
+
+function criterionByCode(c){ return CRITERIA.find(x=>x.code===c); }
+function today(){ const d=new Date(); return d.toLocaleDateString("en-GB",{day:"2-digit",month:"short"}); }
+
+/* ==========================================================
+   TABS
+   ========================================================== */
+const TABS=[["ko","Knowledge organiser"],["vocab","Vocabulary"],["quiz","Weekly quizzes"],["exam","Exam practice"],["progress","My progress"]];
+function buildTabs(){
+  const wrap=$("#tabs");
+  TABS.forEach(([id,label],i)=>{
+    const b=el("button",null,label);
+    b.setAttribute("role","tab");
+    b.setAttribute("aria-selected", i===0?"true":"false");
+    b.onclick=()=>showTab(id);
+    b.dataset.tab=id;
+    wrap.appendChild(b);
+  });
+}
+function showTab(id){
+  TABS.forEach(([t])=>{ $("#p-"+t).hidden = (t!==id); });
+  document.querySelectorAll("#tabs button").forEach(b=>b.setAttribute("aria-selected", b.dataset.tab===id?"true":"false"));
+  if(id==="progress") renderProgress();
+  window.scrollTo({top:0,behavior:"auto"});
+}
+
+/* ==========================================================
+   KNOWLEDGE ORGANISER
+   ========================================================== */
+let koWeek = 1;
+function renderKO(){
+  const p=$("#p-ko"); p.innerHTML="";
+  p.appendChild(el("div","intro","Ten criteria, four weeks. Tick a rung when you can do it <strong>without looking</strong> — cover the text, write it out, then check. Every week, give each criterion a red, amber or green in <b>My progress</b> and revise the reds."));
+
+  const bar=el("div","weekbar");
+  Object.keys(WEEK_LABELS).map(Number).forEach(w=>{ const label=WEEK_LABELS[w];
+    const b=el("button",null,label);
+    b.setAttribute("aria-pressed", koWeek===w?"true":"false");
+    b.onclick=()=>{koWeek=w;renderKO();};
+    bar.appendChild(b);
+  });
+  p.appendChild(bar);
+
+  CRITERIA.filter(c=>c.week===koWeek).forEach(c=>p.appendChild(koCard(c)));
+}
+
+function koCard(c){
+  const card=el("div","card");
+  const head=el("div","card-head");
+  head.appendChild(el("div","code",esc(c.code)+" "+esc(c.title)+"<small>"+esc(c.lesson)+"</small>"));
+  head.appendChild(ragWidget(c.code));
+  card.appendChild(head);
+
+  const grid=el("div","ladder");
+  const rail=el("div","rail");
+  const col=el("div");
+  [["State it","state"],["Describe it","describe"],["Explain it","explain"],["Evaluate it","evaluate"]].forEach(([label,k])=>{
+    if(!c[k]) return;
+    const rung=el("div","rung");
+    const key=c.code+":"+k;
+    const knob=el("button","knob");
+    knob.type="button";
+    knob.setAttribute("aria-pressed", S.rungs[key]?"true":"false");
+    knob.setAttribute("aria-label","Tick "+label+" for "+c.code);
+    knob.onclick=()=>{ S.rungs[key]=!S.rungs[key]; knob.setAttribute("aria-pressed",S.rungs[key]?"true":"false"); save(); };
+    rung.appendChild(knob);
+    const sub=c[k+"Code"];
+    rung.appendChild(el("h4",null,esc(label)+(sub?' <span style="color:var(--quiet);font-weight:400">'+esc(sub)+"</span>":"")));
+    rung.appendChild(el("div","body",esc(c[k])));
+    col.appendChild(rung);
+  });
+  grid.appendChild(rail); grid.appendChild(col);
+  card.appendChild(grid);
+
+  const v=el("div","meta-row");
+  v.appendChild(el("div","lbl","Vocabulary"));
+  const chips=el("div","vocab-chips");
+  c.vocab.forEach(w=>chips.appendChild(el("span","chip",esc(w))));
+  v.appendChild(chips);
+  card.appendChild(v);
+
+  const w=el("div","meta-row warn");
+  w.appendChild(el("div","lbl","Watch the wording"));
+  w.appendChild(el("div",null,esc(c.wording)));
+  card.appendChild(w);
+
+  const n=el("div","meta-row next");
+  n.appendChild(el("div","lbl","Next step at IGCSE"));
+  n.appendChild(el("div","body",esc(c.igcse)));
+  card.appendChild(n);
+
+  return card;
+}
+
+function latestCheckin(){ return S.checkins.length ? S.checkins[S.checkins.length-1] : null; }
+function ragWidget(code){
+  const wrap=el("div","rag");
+  wrap.appendChild(el("span","lbl","Rate it"));
+  ["R","A","G"].forEach(v=>{
+    const b=el("button",null,v); b.type="button"; b.dataset.v=v;
+    const ci=latestCheckin();
+    b.setAttribute("aria-pressed", ci && ci.ratings[code]===v ? "true":"false");
+    b.setAttribute("aria-label",code+" rated "+v);
+    b.onclick=()=>{
+      let c=latestCheckin();
+      if(!c){ c={date:today(),ratings:{}}; S.checkins.push(c); }
+      c.ratings[code]= c.ratings[code]===v ? null : v;
+      save();
+      wrap.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed", c.ratings[code]===x.dataset.v ? "true":"false"));
+    };
+    wrap.appendChild(b);
+  });
+  return wrap;
+}
+
+/* ==========================================================
+   VOCABULARY
+   ========================================================== */
+function renderVocab(){
+  const p=$("#p-vocab"); p.innerHTML="";
+  p.appendChild(el("div","intro","Every word here appears in the lessons, the quizzes and the assessment. The misconceptions below are where most marks are lost — read them more than once."));
+
+  const inp=el("input","search"); inp.type="search"; inp.placeholder="Search a word or a definition…";
+  inp.setAttribute("aria-label","Search the vocabulary");
+  p.appendChild(inp);
+
+  const card=el("div","card");
+  const dl=el("dl","glossary"); dl.style.padding="6px 18px";
+  card.appendChild(dl); p.appendChild(card);
+
+  function draw(filter){
+    dl.innerHTML="";
+    const f=(filter||"").toLowerCase().trim();
+    let n=0;
+    GLOSSARY.forEach(([t,d])=>{
+      if(f && (t+" "+d).toLowerCase().indexOf(f)===-1) return;
+      n++;
+      const box=el("div","term");
+      box.appendChild(el("dt",null,esc(t)));
+      box.appendChild(el("dd",null,esc(d)));
+      dl.appendChild(box);
+    });
+    if(!n) dl.appendChild(el("div","empty","No word matches that. Try part of the word, or clear the search."));
+  }
+  draw("");
+  inp.oninput=()=>draw(inp.value);
+
+  const m=el("div","card");
+  m.appendChild(el("div","card-head",'<div class="code">Words that do not mean what you think<small>Each one has an everyday meaning that fights the scientific one</small></div>'));
+  const g=el("div","misc");
+  MISCONCEPTIONS.forEach(([x,t])=>{
+    g.appendChild(el("div","x","✗&nbsp; "+esc(x)));
+    g.appendChild(el("div","t","✓&nbsp; "+esc(t)));
+  });
+  m.appendChild(g); p.appendChild(m);
+
+  const s=el("div","card");
+  s.appendChild(el("div","card-head",'<div class="code">How to start a good answer</div>'));
+  const sl=el("div","meta-row");
+  STEMS.forEach(x=> sl.appendChild(el("div","body",'<span style="font-family:Georgia,serif">'+esc(x)+"</span>")));
+  s.appendChild(sl); p.appendChild(s);
+
+  const st=el("div","card");
+  st.appendChild(el("div","card-head",'<div class="code">Going further — for everyone<small>These are hard. Have a go anyway — nobody is expected to get them straight away</small></div>'));
+  const stl=el("div","meta-row"); const ul=el("ul"); ul.style.margin="0"; ul.style.paddingLeft="20px";
+  STRETCH.forEach(x=>{const li=el("li",null,esc(x));li.style.marginBottom="7px";li.style.fontFamily="Georgia,serif";ul.appendChild(li);});
+  stl.appendChild(ul); st.appendChild(stl); p.appendChild(st);
+}
+
+/* ==========================================================
+   QUIZZES
+   ========================================================== */
+let quizWeek=1;
+function renderQuiz(){
+  const p=$("#p-quiz"); p.innerHTML="";
+  p.appendChild(el("div","intro","Five quizzes of ten, one point each. You get the answer straight away — read the feedback even when you are right, because it tells you which question on the paper this one is rehearsing."));
+
+  const bar=el("div","weekbar");
+  QUIZZES.forEach(q=>{
+    const b=el("button",null,q.label);
+    b.setAttribute("aria-pressed", quizWeek===q.week?"true":"false");
+    b.onclick=()=>{quizWeek=q.week;renderQuiz();};
+    bar.appendChild(b);
+  });
+  p.appendChild(bar);
+
+  const Q=QUIZZES.find(x=>x.week===quizWeek);
+  const card=el("div","card");
+  card.appendChild(el("div","card-head",'<div class="code">'+esc(Q.label)+" — "+esc(Q.title)+"<small>"+esc(Q.note)+"</small></div>"));
+
+  Q.qs.forEach((q,i)=>{
+    const key="w"+Q.week+"q"+i;
+    const box=el("div","q");
+    box.appendChild(el("div","stem","<b>"+(i+1)+"</b>"+esc(q.q)));
+    const fb=el("div","fb"); fb.hidden=true;
+    const btns=[];
+    q.o.forEach((o,j)=>{
+      const b=el("button","opt",String.fromCharCode(97+j)+")&nbsp; "+esc(o));
+      b.type="button";
+      b.onclick=()=>answer(j);
+      btns.push(b); box.appendChild(b);
+    });
+    box.appendChild(fb);
+
+    function paint(chosen){
+      btns.forEach((b,j)=>{
+        b.disabled=true;
+        if(j===q.a) b.classList.add("correct");
+        else if(j===chosen) b.classList.add("wrong");
+      });
+      const right = chosen===q.a;
+      const cObj = criterionByCode(q.c);
+      const crit = q.c==="CW" ? "Command words" : q.c+" "+(cObj?cObj.title:"");
+      fb.hidden=false;
+      fb.innerHTML = (right ? "<b>Correct.</b> " : "<b>Not this time.</b> The answer is "+String.fromCharCode(97+q.a)+". ")
+        + esc(crit) + (q.p!=="—" ? " · rehearsing paper question "+esc(q.p) : "");
+    }
+    function answer(j){ S.quiz[key]=j; save(); paint(j); tally(); }
+    if(S.quiz[key]!=null) paint(S.quiz[key]);
+    card.appendChild(box);
+  });
+
+  const sc=el("div","score"); sc.id="quiz-score"; card.appendChild(sc);
+  const row=el("div","btnrow"); row.style.padding="0 18px 16px";
+  const reset=el("button","btn ghost","Clear this quiz’s answers");
+  reset.onclick=()=>{ Q.qs.forEach((q,i)=>delete S.quiz["w"+Q.week+"q"+i]); save(); renderQuiz(); };
+  row.appendChild(reset); card.appendChild(row);
+  p.appendChild(card);
+
+  function tally(){
+    let done=0,right=0;
+    Q.qs.forEach((q,i)=>{const v=S.quiz["w"+Q.week+"q"+i]; if(v!=null){done++; if(v===q.a) right++;}});
+    sc.innerHTML = done? ("<b>"+right+" out of "+done+"</b> answered so far, "+Q.qs.length+" in the quiz.") : "No answers yet. Work through all ten, then look at which criteria your wrong answers came from.";
+  }
+  tally();
+}
+
+/* ==========================================================
+   EXAM PRACTICE
+   ========================================================== */
+function renderExam(){
+  const p=$("#p-exam"); p.innerHTML="";
+  p.appendChild(el("div","intro","A practice paper built to match Assessment 1 question for question — <strong>40 marks in 50 minutes</strong>, the same criteria, the same marks and the same AO split, but different data and different situations. These are not the questions you will sit. Write your answer, press Check, and you will be told which mark points the examiner is looking for and which ones you have hit. Then read the model answer and give yourself the mark you honestly think you earned."));
+
+  const cw=el("div","card");
+  cw.appendChild(el("div","card-head",'<div class="code">Do exactly what the command word asks<small>Read the word at the start of every question before you write</small></div>'));
+  const sc=el("div","scroller");
+  let html="<table><thead><tr><th>Word</th><th>What you must actually do</th></tr></thead><tbody>";
+  COMMAND_WORDS.forEach(([w,d])=> html+="<tr><td><b>"+esc(w)+"</b></td><td>"+esc(d)+"</td></tr>");
+  html+="</tbody></table>";
+  sc.innerHTML=html; cw.appendChild(sc); p.appendChild(cw);
+
+  EXAM.forEach(Q=>{
+    const card=el("div","card");
+    let marks=0; Q.parts.forEach(pt=>marks+=pt.marks);
+    card.appendChild(el("div","card-head",'<div class="code">Question '+Q.n+'<small>Total '+marks+' mark'+(marks>1?"s":"")+'</small></div>'));
+    if(Q.intro){ const i=el("div","meta-row"); i.appendChild(el("div","body",'<span style="font-family:Georgia,serif">'+esc(Q.intro)+"</span>")); card.appendChild(i); }
+    if(Q.table) card.appendChild(tableBlock(Q.table));
+    Q.parts.forEach(pt=> card.appendChild(examPart(pt)));
+    p.appendChild(card);
+  });
+
+  const row=el("div","btnrow");
+  const clr=el("button","btn ghost","Clear all my exam answers");
+  clr.onclick=()=>{ if(confirm("Delete every answer and mark you have entered on this paper?")){ S.exam={}; save(); renderExam(); } };
+  row.appendChild(clr); p.appendChild(row);
+}
+
+function tableBlock(t){
+  const w=el("div","scroller"); w.style.padding="0 18px 14px";
+  let h="<table><thead><tr>"+t.head.map(x=>"<th>"+esc(x)+"</th>").join("")+"</tr></thead><tbody>";
+  t.rows.forEach(r=> h+="<tr>"+r.map((c,i)=> i===0?"<td><b>"+esc(c)+"</b></td>":"<td>"+esc(c)+"</td>").join("")+"</tr>");
+  h+="</tbody></table>"; w.innerHTML=h; return w;
+}
+
+function examPart(pt){
+  const box=el("div","q");
+  const st=el("div","qtext");
+  st.innerHTML='<span class="marks">('+pt.marks+")</span><b>"+esc(pt.id)+"</b>&nbsp; "+pt.stem
+    + (pt.hint? '<span class="hint">'+esc(pt.hint)+"</span>":"");
+  box.appendChild(st);
+  if(pt.table) box.appendChild(tableBlock(pt.table));
+
+  const store = S.exam[pt.id] = S.exam[pt.id] || {ans:null,fields:[],mark:null};
+  if(!Array.isArray(store.fields)) store.fields=[];
+  if(typeof store.ans!=="string") store.ans = store.ans||null;
+  const inputs=[];
+
+  if(pt.fields){
+    pt.fields.forEach((f,i)=>{
+      const row=el("div","fieldrow");
+      const id="f-"+pt.id+"-"+i;
+      const lab=el("label",null,esc(f.label)); lab.htmlFor=id;
+      const inp=el("input"); inp.type="text"; inp.id=id; inp.value=store.fields[i]||"";
+      inp.oninput=()=>{ store.fields[i]=inp.value; save(); };
+      row.appendChild(lab); row.appendChild(inp); box.appendChild(row); inputs.push(inp);
+    });
+  } else {
+    const ta=el("textarea");
+    ta.rows = pt.marks>=6?9 : pt.marks>=3?5 : pt.marks===2?3:2;
+    ta.value = store.ans||"";
+    ta.setAttribute("aria-label","Your answer to question "+pt.id);
+    ta.oninput=()=>{ store.ans=ta.value; save(); };
+    box.appendChild(ta); inputs.push(ta);
+  }
+
+  const out=el("div"); box.appendChild(out);
+  const row=el("div","btnrow");
+  const check=el("button","btn","Check my answer");
+  const showModel=el("button","btn ghost","Show the model answer");
+  row.appendChild(check); row.appendChild(showModel); box.appendChild(row);
+
+  check.onclick=()=>{ out.innerHTML=""; out.appendChild(buildResult(pt,store)); };
+  showModel.onclick=()=>{ out.innerHTML=""; out.appendChild(modelBlock(pt)); out.appendChild(selfMark(pt,store)); };
+
+  return box;
+}
+
+function buildResult(pt,store){
+  const wrap=el("div","result");
+  let hits=0,total=0;
+  const list=el("div");
+
+  if(pt.fields){
+    pt.fields.forEach((f,i)=>{
+      const norm=normalise(store.fields[i]);
+      const ok = (store.fields[i]||"").trim()!=="" && f.need.every(g=>hasAny(norm,g));
+      total++; if(ok) hits++;
+      list.appendChild(mpRow(ok, f.label+" — "+f.model));
+    });
+  } else {
+    const norm=normalise(store.ans);
+    const blank=(store.ans||"").trim()==="";
+    (pt.mps||[]).forEach(mp=>{
+      let ok = !blank && scoreMP(norm,mp);
+      if(!ok && pt.exactOk){ const t=normalise(store.ans).trim(); if(pt.exactOk.indexOf(t)!==-1) ok=true; }
+      total++; if(ok) hits++;
+      list.appendChild(mpRow(ok,mp.t));
+    });
+  }
+
+  const cap = pt.cap || pt.marksOverride || pt.marks;
+  const suggested = pt.marksOverride ? (hits===total?1:0) : Math.min(hits,cap);
+
+  wrap.appendChild(el("h5",null,"What the mark scheme is looking for"));
+  wrap.appendChild(list);
+  const note = pt.cap && total>pt.cap
+    ? "You have hit "+hits+" of the "+total+" possible points. The question is worth "+pt.cap+", so any "+pt.cap+" of them is full marks."
+    : "You have hit "+hits+" of "+total+".";
+  wrap.appendChild(el("p",null,"<b>"+esc(note)+"</b> This checker looks for the words the mark scheme needs, so it can miss a right answer written another way — the model answer below is the thing to judge yourself against."));
+  wrap.appendChild(modelBlock(pt));
+  wrap.appendChild(selfMark(pt,store,suggested));
+  return wrap;
+}
+
+function mpRow(ok,text){
+  const r=el("div","mp "+(ok?"hit":"miss"));
+  r.appendChild(el("span","tick",ok?"✓":"·"));
+  r.appendChild(el("span",null,esc(text)));
+  return r;
+}
+
+function modelBlock(pt){
+  const m=el("div","model");
+  if(pt.fields && !pt.model){
+    m.innerHTML = pt.fields.map(f=>"<b>"+esc(f.label)+":</b> "+esc(f.model)).join("<br>");
+  } else {
+    m.innerHTML = "<b>Model answer.</b> "+esc(pt.model||"");
+  }
+  return m;
+}
+
+function selfMark(pt,store,suggested){
+  const max = pt.marksOverride || pt.marks;
+  const w=el("div","selfmark");
+  w.appendChild(el("span",null,"Now mark yourself honestly, out of <b>"+max+"</b>:"));
+  const inp=el("input"); inp.type="text"; inp.inputMode="numeric";
+  inp.setAttribute("aria-label","Your mark for question "+pt.id+" out of "+max);
+  inp.value = store.mark!=null ? store.mark : (suggested!=null?suggested:"");
+  if(store.mark==null && suggested!=null){ store.mark=suggested; save(); }
+  inp.oninput=()=>{
+    let v=parseInt(inp.value,10);
+    if(isNaN(v)){ store.mark=null; } else { v=Math.max(0,Math.min(max,v)); store.mark=v; }
+    save();
+  };
+  w.appendChild(inp);
+  w.appendChild(el("span",null,"<span style='color:var(--quiet)'>goes into My progress</span>"));
+  return w;
+}
+
+/* ==========================================================
+   PROGRESS
+   ========================================================== */
+function allParts(){ const out=[]; EXAM.forEach(Q=>Q.parts.forEach(p=>out.push(p))); return out; }
+
+function renderProgress(){
+  const p=$("#p-progress"); p.innerHTML="";
+  p.appendChild(el("div","intro","Ten criteria, and every line of the mark scheme is a sentence from a card already in your book. There is nothing new on the paper. Rate yourself every week and revise the reds first."));
+
+  /* --- headline --- */
+  const parts=allParts();
+  let scored=0,marked=0;
+  const ao={AO1:0,AO2:0,AO3:0};
+  parts.forEach(pt=>{
+    const s=S.exam[pt.id];
+    const max=pt.marksOverride||pt.marks;
+    if(s && s.mark!=null){
+      scored+=s.mark; marked+=max;
+      if(pt.aoSplit){ const half=Math.floor(s.mark/2); ao.AO2+=half; ao.AO3+=s.mark-half; }
+      else ao[pt.ao]+=s.mark;
+    }
+  });
+  let qDone=0,qRight=0;
+  QUIZZES.forEach(Q=>Q.qs.forEach((q,i)=>{const v=S.quiz["w"+Q.week+"q"+i]; if(v!=null){qDone++; if(v===q.a)qRight++;}}));
+  const rungsDone=Object.values(S.rungs).filter(Boolean).length;
+
+  const h=el("div","card");
+  const stats=el("div","bigstat");
+  stats.appendChild(el("div","stat",'<div class="n">'+rungsDone+"/"+RUNG_TOTAL+"</div><div class=\"l\">Knowledge organiser rungs ticked</div>"));
+  stats.appendChild(el("div","stat",'<div class="n">'+qRight+"/"+qDone+'</div><div class="l">Quiz questions right (of '+qDone+" answered)</div>"));
+  stats.appendChild(el("div","stat",'<div class="n">'+scored+"/"+(marked||PAPER_TOTAL)+'</div><div class="l">Exam marks you have given yourself</div>'));
+  if(marked) stats.appendChild(el("div","stat",'<div class="n">'+Math.round(scored/marked*100)+'%</div><div class="l">on the '+marked+" marks you have done</div>"));
+  h.appendChild(stats);
+  if(marked){
+    const aoRow=el("div","meta-row");
+    aoRow.appendChild(el("div","lbl","Assessment objectives so far"));
+    aoRow.appendChild(el("div",null,"AO1 recall <b>"+ao.AO1+"</b> · AO2 apply <b>"+ao.AO2+"</b> · AO3 analyse and evaluate <b>"+ao.AO3+"</b> &nbsp;<span style='color:var(--quiet)'>(the real paper is AO1 16, AO2 16, AO3 8)</span>"));
+    h.appendChild(aoRow);
+  }
+  p.appendChild(h);
+
+  /* --- weekly RAG grid --- */
+  const g=el("div","card");
+  g.appendChild(el("div","card-head",'<div class="code">Weekly self-check<small>Rate every criterion, every week. Watch yourself move.</small></div>'));
+  const gs=el("div","scroller"); gs.style.padding="0 18px";
+  const tb=el("table");
+  let head="<thead><tr><th>Code</th><th>What it covers</th>";
+  S.checkins.forEach(c=> head+="<th>"+esc(c.date)+"</th>");
+  head+="</tr></thead><tbody>";
+  const order=CODES;
+  order.forEach(code=>{
+    const c=criterionByCode(code);
+    head+="<tr><td><b>"+esc(code)+"</b></td><td>"+esc(c.title)+"</td>";
+    S.checkins.forEach((ci,idx)=>{
+      const v=ci.ratings[code]||"";
+      const col = v==="G"?"var(--green-soft)": v==="A"?"var(--amber-soft)": v==="R"?"var(--pink-soft)":"transparent";
+      head+='<td style="background:'+col+';text-align:center;font-weight:700" data-code="'+code+'" data-ci="'+idx+'">'+esc(v||"–")+"</td>";
+    });
+    head+="</tr>";
+  });
+  head+="</tbody>";
+  tb.innerHTML=head;
+  gs.appendChild(tb); g.appendChild(gs);
+
+  const grow=el("div","btnrow"); grow.style.padding="12px 18px 16px";
+  const nb=el("button","btn","Start a new weekly check-in");
+  nb.onclick=()=>{ S.checkins.push({date:today(),ratings:{}}); save(); renderProgress(); renderKO(); };
+  grow.appendChild(nb);
+  if(S.checkins.length){
+    const note=el("span",null,"<span style='color:var(--quiet);font-size:.85rem'>Rate each criterion on the Knowledge organiser tab — it fills the newest column.</span>");
+    grow.appendChild(note);
+  }
+  g.appendChild(grow);
+  if(!S.checkins.length) g.appendChild(el("div","empty","No check-ins yet. Start one, then rate all seven criteria on the Knowledge organiser tab."));
+  p.appendChild(g);
+
+  /* --- per criterion --- */
+  const perc={};
+  QUIZZES.forEach(Q=>Q.qs.forEach((q,i)=>{
+    const v=S.quiz["w"+Q.week+"q"+i]; if(v==null) return;
+    perc[q.c]=perc[q.c]||{d:0,r:0}; perc[q.c].d++; if(v===q.a) perc[q.c].r++;
+  }));
+  const exc={};
+  parts.forEach(pt=>{
+    const s=S.exam[pt.id]; const max=pt.marksOverride||pt.marks;
+    if(s && s.mark!=null){ exc[pt.c]=exc[pt.c]||{g:0,m:0}; exc[pt.c].g+=s.mark; exc[pt.c].m+=max; }
+  });
+
+  const cc=el("div","card");
+  cc.appendChild(el("div","card-head",'<div class="code">Criterion by criterion<small>Where the evidence says you are, not where you feel you are</small></div>'));
+  const ccs=el("div","scroller"); ccs.style.padding="0 18px 16px";
+  let ch="<table><thead><tr><th>Code</th><th>Criterion</th><th>Rungs</th><th>Quiz</th><th>Exam marks</th><th>Latest RAG</th></tr></thead><tbody>";
+  order.forEach(code=>{
+    const c=criterionByCode(code);
+    const avail=["state","describe","explain","evaluate"].filter(k=>c[k]);
+    const r=avail.filter(k=>S.rungs[code+":"+k]).length;
+    const q=perc[code]; const e=exc[code];
+    const ci=latestCheckin(); const rag=ci&&ci.ratings[code]?ci.ratings[code]:"–";
+    ch+="<tr><td><b>"+esc(code)+"</b></td><td>"+esc(c.title)+"</td>"
+      +'<td><div class="bar"><i style="width:'+(avail.length?r/avail.length*100:0)+'%"></i></div>'+r+"/"+avail.length+"</td>"
+      +"<td>"+(q? q.r+"/"+q.d : "–")+"</td>"
+      +"<td>"+(e? e.g+"/"+e.m : "–")+"</td>"
+      +"<td style='text-align:center;font-weight:700'>"+esc(rag)+"</td></tr>";
+  });
+  ch+="</tbody></table>"; ccs.innerHTML=ch; cc.appendChild(ccs); p.appendChild(cc);
+
+  /* --- revision list --- */
+  const todo=[];
+  order.forEach(code=>{
+    const c=criterionByCode(code);
+    const ci=latestCheckin();
+    const rag=ci?ci.ratings[code]:null;
+    const q=perc[code]; const e=exc[code];
+    const reasons=[];
+    if(rag==="R") reasons.push("you rated it red");
+    if(rag==="A") reasons.push("you rated it amber");
+    if(q && q.d>=2 && q.r/q.d<0.6) reasons.push("you got "+q.r+" of "+q.d+" quiz questions right");
+    if(e && e.m>=2 && e.g/e.m<0.6) reasons.push("you scored "+e.g+" of "+e.m+" on the paper");
+    const av=["state","describe","explain","evaluate"].filter(k=>c[k]);
+    const r2=av.filter(k=>S.rungs[code+":"+k]).length;
+    if(r2<=1 && (q||e||rag)) reasons.push("only "+r2+" of the "+av.length+" rungs ticked");
+    if(reasons.length) todo.push([code,c.title,reasons]);
+  });
+
+  const t=el("div","card");
+  t.appendChild(el("div","card-head",'<div class="code">Revise these next<small>Built from what you have actually done, not guessed</small></div>'));
+  if(todo.length){
+    const ul=el("ul","todo");
+    todo.forEach(([code,title,reasons])=>{
+      const li=el("li",null,"<b>"+esc(code)+" "+esc(title)+"</b> — "+esc(reasons.join(", "))+". Go back to the criterion card, read State it and Describe it, cover them, write them from memory, then check.");
+      ul.appendChild(li);
+    });
+    t.appendChild(ul);
+  } else {
+    t.appendChild(el("div","empty","Nothing flagged yet. Work through a quiz and a few exam questions and this list will fill itself in."));
+  }
+  p.appendChild(t);
+
+  const row=el("div","btnrow");
+  const pr=el("button","btn ghost","Print this page");
+  pr.onclick=()=>window.print();
+  const rs=el("button","btn ghost","Clear everything and start again");
+  rs.onclick=()=>{ if(confirm("This deletes every tick, rating, quiz answer and exam answer you have saved. Are you sure?")){ S={rungs:{},checkins:[],quiz:{},exam:{}}; try{localStorage.removeItem(KEY);}catch(e){} renderKO(); renderQuiz(); renderExam(); renderProgress(); } };
+  row.appendChild(pr); row.appendChild(rs); p.appendChild(row);
+}
+
+/* ==========================================================
+   GO
+   ========================================================== */
+buildTabs();
+renderKO();
+renderVocab();
+renderQuiz();
+renderExam();
+</script>
+</body>
+</html>
